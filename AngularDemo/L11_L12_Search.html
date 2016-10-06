@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Home</title>
+    <!--<script src="Script/angular.min.js"></script>-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/Script.js"></script>
+</head>
+<body>    
+    
+    <h2>Search filter in AngularJS</h2>
+    <div style="margin-top:5px" />
+    <div ng-controller="employeesController">
+        Search all field: <input type="text" placeholder="Search Employee" ng-model="searchText" />
+        Search in first name: <input type="text" placeholder="Search first name" ng-model="searchText.firstname" />
+        Search in company : <input type="text" placeholder="Search company" ng-model="searchText.company" />
+        <div style="margin-top:5px" />
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>
+                        First Name
+                    </td>
+                    <td>
+                        Last Name
+                    </td>
+                    <td>
+                        Gender
+                    </td>
+                    <td>
+                        Company
+                    </td>
+                    <td>
+                        Salary
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees | filter:searchText">
+                    <td>
+                        {{employee.firstname}}
+                    </td>
+                    <td>
+                        {{employee.lastname}}
+                    </td>
+                    <td>
+                        {{employee.gender}}
+                    </td>
+                    <td>
+                        {{employee.company}}
+                    </td>
+                    <td>
+                        {{employee.salary}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top:5px" />
+
+    <h2>Angularjs filter by multiple properties</h2>
+    <div style="margin-top:5px" />
+    <div ng-controller="employeesController">
+        Search in first name: <input type="text" placeholder="Search first name" ng-model="searchText.firstname" />
+        Search in company : <input type="text" placeholder="Search company" ng-model="searchText.company" />
+        <input type="checkbox" ng-model="excatMatch" /> Exact Match
+        <div style="margin-top:5px" />
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>
+                        First Name
+                    </td>
+                    <td>
+                        Last Name
+                    </td>
+                    <td>
+                        Gender
+                    </td>
+                    <td>
+                        Company
+                    </td>
+                    <td>
+                        Salary
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees | filter:searchText:excatMatch">
+                    <td>
+                        {{employee.firstname}}
+                    </td>
+                    <td>
+                        {{employee.lastname}}
+                    </td>
+                    <td>
+                        {{employee.gender}}
+                    </td>
+                    <td>
+                        {{employee.company}}
+                    </td>
+                    <td>
+                        {{employee.salary}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top:5px" />
+
+    <h2>Single textbox to search multiple properties</h2>
+    <div style="margin-top:5px" />
+    <div ng-controller="employeesController">
+        Search in First name and Company: <input type="text" placeholder="Search Name and Company" ng-model="searchText" />
+       
+        <div style="margin-top:5px" />
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>
+                        First Name
+                    </td>
+                    <td>
+                        Last Name
+                    </td>
+                    <td>
+                        Gender
+                    </td>
+                    <td>
+                        Company
+                    </td>
+                    <td>
+                        Salary
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees | filter:search">
+                    <td>
+                        {{employee.firstname}}
+                    </td>
+                    <td>
+                        {{employee.lastname}}
+                    </td>
+                    <td>
+                        {{employee.gender}}
+                    </td>
+                    <td>
+                        {{employee.company}}
+                    </td>
+                    <td>
+                        {{employee.salary}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top:5px" />
+</body>
+</html>

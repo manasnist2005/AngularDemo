@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Home</title>
+    <!--<script src="Script/angular.min.js"></script>-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/Script.js"></script>
+</head>
+<body>
+    <div>
+        Is 1==1 ? {{1==1}}
+        </br>
+        Is 1==2 ? {{1==2}}
+    </div>
+    <div style="margin-top:5px" />
+    <div>
+        {{ {name:'Manas', age:'30'}.name }}</br> {{ {name:'Manas', age:'30'}.age}}</br>
+        {{ ['Manas','Mukesh','Ashu','Neelu'][1]}}
+    </div>
+    <div style="margin-top:5px" />
+    <div>      
+        10+20 = {{10+20}}
+    </div>
+    <div style="margin-top:5px" />
+    <div ng-controller="myController">                       
+        {{message}} 
+    </div>
+    <div style="margin-top:5px"/>
+    <div ng-controller="employeeController">        
+        FirstName: {{employee.firstname}}</br>
+        LastName: {{employee.lastname}}</br>
+        Gender: {{employee.gender}}
+    </div>
+    <div style="margin-top:5px" />
+    <div ng-controller="ImageController">
+        Device: {{gadget.device}}</br>
+        Company: {{gadget.company}}</br>
+       <img ng-src="{{gadget.imagesrc}}" height="100" width="100" />
+
+    </div>
+</body>
+</html>

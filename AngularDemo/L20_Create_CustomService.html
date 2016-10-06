@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Home</title>
+    <!--<script src="Script/angular.min.js"></script>-->
+    <script src="Scripts/angular.js"></script>
+    <script src="scripts/stringService.js"></script>
+    <script>
+        var app = angular
+         .module("myModule", [])
+         .controller("myController", function ($scope) {
+             $scope.transformString = function (input) {
+                 if (!input)
+                     return input;
+
+                 var output = "";
+
+                 for (var i = 0; i < input.length; i++) {
+                     if (i > 0 && input[i] == input[i].toUpperCase()) {
+                         output = output + " ";
+                     }
+
+                     output = output + input[i];
+                 }
+
+                 $scope.output = output;
+             };
+         });
+    </script>
+</head>
+<body>
+    
+    <h2>Create custom service in AngularJS</h2>
+    <div style="margin-top:5px"/>
+    <div ng-controller="myController">
+        <table>
+            <tr>
+                <td>Your String</td>
+                <td><input type="text" ng-model="input" /> </td>
+            </tr>
+            <tr>
+                <td>Result</td>
+                <td><input type="text" ng-model="output" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" ng-click="transformString(input)"
+                           value="Process String" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="margin-top:5px" />    
+    
+</body>
+</html>

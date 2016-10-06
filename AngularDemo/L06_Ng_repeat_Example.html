@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Home</title>
+    <!--<script src="Script/angular.min.js"></script>-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/Script.js"></script>
+</head>
+<body>
+    
+    <h2>ng-repeate directive example</h2>
+    <div style="margin-top:5px"/>
+    <div ng-controller="employeesController">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>
+                        First Name
+                    </td>
+                    <td>
+                        Last Name
+                    </td>
+                    <td>
+                        Gender
+                    </td>
+                    <td>
+                        Company
+                    </td>
+                    <td>
+                        Salary
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees">
+                    <td>
+                        {{employee.firstname}} 
+                    </td>
+                    <td>
+                        {{employee.lastname}}
+                    </td>
+                    <td>
+                        {{employee.gender}}
+                    </td>
+                    <td>
+                        {{employee.company}}
+                    </td>
+                    <td>
+                        {{employee.salary}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+    </div>
+    <div style="margin-top:5px" />
+    <h2>Nesting ng-repeate directive example</h2>
+    <div ng-controller="statesController">
+        <ul>
+            <li ng-repeat="state in states">
+                {{state.name}}
+                <ul>
+                    <li ng-repeat="city in state.cities">
+                       {{city.name}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <h2>ng-repeate directive example with Index</h2>
+    <div ng-controller="statesController">
+        <ul>
+            <li ng-repeat="state in states">
+                {{state.name}} -Index {{$index}}
+                <ul>
+                    <li ng-repeat="city in state.cities">
+                        {{city.name}} -Parent Index {{$parent.$index}}  -Index {{$index}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <h2>OR</h2>
+    <div ng-controller="statesController">
+        <ul>
+            <li ng-repeat="state in states" ng-init="parentindex= $index">
+                {{state.name}} -Index {{$index}}
+                <ul>
+                    <li ng-repeat="city in state.cities">
+                        {{city.name}} -Parent Index {{parentindex}}  -Index {{$index}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+</body>
+</html>

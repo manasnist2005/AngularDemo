@@ -1,0 +1,54 @@
+﻿ <!DOCTYPE html>
+<html ng-app="Demo">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <base href="/" />
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+   
+    <!--<script> document.getElementById("demo").innerHTML = Date()</script>-->
+    <script>       
+        /// <reference path="angular.min.js" />
+        /// <reference path="angular-route.min.js" />
+        var app = angular
+            .module("Demo", [])
+            .controller("redColourController", function ($scope, $rootScope) {
+                $rootScope.rootScopeColour = "I am Root Scope Colour";
+                $scope.redColour = "I am Red Colour";
+            })
+            .controller("greenColourController", function ($scope) {
+                $scope.greenColour = "I am Green Colour";
+            })
+                    
+
+    </script>  
+    
+</head>
+<body>
+
+    <h2>Difference between $scope and $rootScope</h2>
+    <br />
+    <br />
+    <div ng-controller="redColourController">
+    Root Scope Colour : {{rootScopeColour}} <br />
+    Red Colour Controller : {{redColour}} <br />
+    Green Colour Controller :
+    <span style="color:red" ng-show="greenColour == undefined">
+        greenColour is undefined
+    </span>
+    </div>
+
+    <br />
+    <br />
+
+    <div ng-controller="greenColourController">
+        Root Scope Colour : {{rootScopeColour}} <br />
+        Green Colour Controller : {{greenColour}} <br />
+        Red Colour Controller :
+        <span style="color:red" ng-show="redColour == undefined">
+            redColour is undefined
+        </span>
+    </div>
+</body>
+</html>

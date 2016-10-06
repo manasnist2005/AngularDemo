@@ -1,0 +1,40 @@
+﻿<table border="1">
+    <thead>
+        <tr>
+            <td>
+                First Name
+            </td>
+            <td>
+                Last Name
+            </td>
+            <td>
+                Gender
+            </td>
+            <td>
+                Company
+            </td>
+            <td>
+                Salary
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="employee in employees">
+            <td>
+                {{employee.firstname}}
+            </td>
+            <td>
+                {{employee.lastname}}
+            </td>
+            <td>
+                {{employee.gender}}
+            </td>
+            <td>
+                {{employee.company}}
+            </td>
+            <td>
+                {{employee.salary}}
+            </td>
+        </tr>
+    </tbody>
+</table>  

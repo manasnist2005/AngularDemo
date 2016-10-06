@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Home</title>
+    <!--<script src="Script/angular.min.js"></script>-->
+    <script src="Scripts/angular.js"></script>
+    <!--<script src="Scripts/Script.js"></script>-->
+    <script>
+        var myapp = new angular
+                     .module("myModule", [])                    
+                   
+
+        var employeesController = function ($scope) {
+            var employees = [
+       { firstname: 'Manas', lastname: 'Panda', gender: 'Male', company: 'Tieto', salary: 6000 },
+       { firstname: 'Kiran', lastname: 'Sadangi', gender: 'Male', company: 'Tieto', salary: 7000 },
+       { firstname: 'Lala', lastname: 'Bishoyi', gender: 'Male', company: 'Infosys', salary: 8000 },
+       { firstname: 'Manoj', lastname: 'Patro', gender: 'Male', company: 'Tieto', salary: 9000 },
+       { firstname: 'Jyoti', lastname: 'Pathy', gender: 'Female', company: 'Infosys', salary: 6700 },
+       { firstname: 'Alia', lastname: 'Mohanty', gender: 'Female', company: 'SDL', salary: 7800},
+       { firstname: 'Sonali', lastname: 'Sahu', gender: 'Female', company: 'SDL', salary: 9900},
+            ];
+            $scope.employees = employees;
+            $scope.employeeTable = 'EmployeeTable.html';
+        };
+        //Register the controller in the module
+        myapp.controller("employeesController", employeesController);
+    </script>
+</head>
+<body ng-app="myModule">
+    
+    <h2>ng include directive in AngularJS</h2>
+    <div style="margin-top:5px"/>
+    <div ng-controller="employeesController">
+        <div ng-include="'EmployeeTable.html'"></div>
+        <div style="margin-top:5px" />
+        <h2>OR using scope variable inside ng-include</h2>
+        <div ng-include="employeeTable"></div>
+    </div>
+    <div style="margin-top:5px" />
+    
+</body>
+
+</html>

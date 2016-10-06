@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Home</title>
+    <!--<script src="Script/angular.min.js"></script>-->
+    <script src="Scripts/angular.js"></script>
+    <script>
+        //var myapp = new angular
+        //             .module("myModule", [])
+        //.controller("employeesController", function ($scope, $http,$log ) {
+        //    $http({
+        //        method: 'GET',
+        //        url:'EmployeeService.asmx/GetAllEmployees'})
+        //    .then(function (response) {
+        //        $scope.employees = response.data;
+        //        $log.info(response);
+        //    }, function (reason) {
+        //        $scope.error = reason.data;
+        //        $log.info(reason);
+        //   });
+        //});
+
+        // Or we can simplyfy like this
+
+
+        
+        var myapp = new angular
+                     .module("myModule", [])
+        .controller("employeesController", function ($scope, $http, $log) {
+            var successCallBack = function (response) {
+                $scope.employees = response.data;
+                $log.info(response);
+            };
+
+            var errorCallBack = function (reason) {
+                $scope.error = reason.data;
+                $log.info(reason);
+            };
+            $http({
+                method: 'GET',
+                url: 'WebServices/EmployeeService.asmx/GetAllEmployees'
+            })
+            .then(successCallBack, errorCallBack);
+        });
+    </script>
+</head>
+<body>
+    
+    <h2>Consuming ASP NET Web Service in AngularJS using $http</h2>
+    <div style="margin-top:5px"/>
+    <div ng-controller="employeesController">
+        {{error}}<br /><br />
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>
+                        Id
+                    </td>
+                    <td>
+                        Name
+                    </td>
+                    <td>
+                        Gender
+                    </td> 
+                    <td>
+                        Company
+                    </td>                  
+                    <td>
+                        Salary
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees">
+                    <td>
+                        {{employee.id}} 
+                    </td>
+                    <td>
+                        {{employee.name}}
+                    </td>
+                    <td>
+                        {{employee.gender}}
+                    </td>
+                    <td>
+                        {{employee.company}}
+                    </td>
+                    <td>
+                        {{employee.salary}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+    </div>
+    <div style="margin-top:5px" />    
+    
+</body>
+</html>

@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Home</title>
+    <!--<script src="Script/angular.min.js"></script>-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/Script.js"></script>
+</head>
+<body>
+
+    <h2>Format data:: Lower case, Upper case, date format, Number format, Currency format </h2>
+    <div style="margin-top:5px" />
+    <div ng-controller="employeesController">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>
+                        Name
+                    </td>
+                    
+                    <td>
+                        Gender
+                    </td>
+                    <td>
+                        Date of Birth
+                    </td>
+                    <td>
+                        Company
+                    </td>
+                    <td>
+                        Salary(number format)
+                    </td>
+                    <td>
+                        Salary (currency format)
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees">
+                    <td>
+                        {{employee.firstname | uppercase}} {{employee.lastname | uppercase}} 
+                    </td>
+                    
+                    <td>
+                        {{employee.gender | lowercase }}
+                    </td>
+                    <td>
+                        {{employee.dateOfBirth | date:"dd/MM/yyyy"}}
+                    </td>
+                    <td>
+                        {{employee.company}}
+                    </td>
+                    <td>
+                        {{employee.salary | number:2}}
+                    </td>
+                    <td>
+                        {{employee.salary | currency}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top:5px" />
+    
+    <h2>Filter data </h2>
+    <div style="margin-top:5px" />
+    <div ng-controller="employeesController">
+        Rows to display: <input type="number" step="1" min="0" max="7" ng-model="rowLimit" />
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>
+                        Name
+                    </td>
+
+                    <td>
+                        Gender
+                    </td>
+                    <td>
+                        Date of Birth
+                    </td>
+                    <td>
+                        Company
+                    </td>
+                    <td>
+                        Salary(number format)
+                    </td>
+                    <td>
+                        Salary (currency format)
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees | limitTo:rowLimit"> <!--Example limitTo:<Number of rows to limit>:<Index number from which to start by default 0>>-->
+                    <td>
+                        {{employee.firstname | uppercase}} {{employee.lastname | uppercase}}
+                    </td>
+
+                    <td>
+                        {{employee.gender | lowercase }}
+                    </td>
+                    <td>
+                        {{employee.dateOfBirth | date:"dd/MM/yyyy"}}
+                    </td>
+                    <td>
+                        {{employee.company}}
+                    </td>
+                    <td>
+                        {{employee.salary | number:2}}
+                    </td>
+                    <td>
+                        {{employee.salary | currency}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top:5px" />
+
+    <h2>Sort data </h2>
+    <div style="margin-top:5px" />
+    <div ng-controller="employeesController">
+        Order by: <select ng-model="sortColumn">
+        <option value="firstname">Firstname Ascending</option>
+        <option value="lastname">Lastname Ascending</option>
+        <option value="gender">Gender Ascending</option>
+        <option value="company">Company Ascending</option>
+        <option value="dateOfBirth">Date of Birthday Ascending</option>
+        <option value="salary">Salary Ascending</option>
+                      <option value="-firstname">Firstname Descending</option>
+                      <option value="-lastname">Lastname Descending</option>
+                      <option value="-gender">Gender Descending</option>
+                      <option value="-company">Company Descending</option>
+                      <option value="-dateOfBirth">Date of Birthday Descending</option>
+                      <option value="-salary">Salary Descending</option>
+                     
+        </select>      
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>
+                        Name
+                    </td>
+
+                    <td>
+                        Gender
+                    </td>
+                    <td>
+                        Date of Birth
+                    </td>
+                    <td>
+                        Company
+                    </td>
+                    <td>
+                        Salary(number format)
+                    </td>
+                    <td>
+                        Salary (currency format)
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees | orderBy: sortColumn">
+                    <!--Example limitTo:<Number of rows to limit>:<Index number from which to start by default 0>>-->
+                    <td>
+                        {{employee.firstname | uppercase}} {{employee.lastname | uppercase}}
+                    </td>
+
+                    <td>
+                        {{employee.gender | lowercase }}
+                    </td>
+                    <td>
+                        {{employee.dateOfBirth | date:"dd/MM/yyyy"}}
+                    </td>
+                    <td>
+                        {{employee.company}}
+                    </td>
+                    <td>
+                        {{employee.salary | number:2}}
+                    </td>
+                    <td>
+                        {{employee.salary | currency}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top:5px" />
+
+</body>
+</html>

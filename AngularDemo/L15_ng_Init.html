@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Home</title>
+    <!--<script src="Script/angular.min.js"></script>-->
+    <script src="Scripts/angular.js"></script>
+    <!--<script src="Scripts/Script.js"></script>-->
+    <script>
+        var myapp = new angular
+                     .module("myModule", [])                    
+                   
+
+        var employeesController = function ($scope) {
+            var employees = [
+       { firstname: 'Manas', lastname: 'Panda', gender: 'Male', company: 'Tieto', salary: 6000, dateOfBirth: new Date("February 20,1987") },
+       { firstname: 'Kiran', lastname: 'Sadangi', gender: 'Male', company: 'Tieto', salary: 7000, dateOfBirth: new Date("July 21,1987") },
+       { firstname: 'Lala', lastname: 'Bishoyi', gender: 'Male', company: 'Infosys', salary: 8000, dateOfBirth: new Date("July 09,1986") },
+       { firstname: 'Manoj', lastname: 'Patro', gender: 'Male', company: 'Tieto', salary: 9000, dateOfBirth: new Date("August 06,1986") },
+       { firstname: 'Jyoti', lastname: 'Pathy', gender: 'Female', company: 'Infosys', salary: 6700, dateOfBirth: new Date("August 06,1988") },
+       { firstname: 'Alia', lastname: 'Mohanty', gender: 'Female', company: 'SDL', salary: 7800, dateOfBirth: new Date("May 18,1992") },
+       { firstname: 'Sonali', lastname: 'Sahu', gender: 'Female', company: 'SDL', salary: 9900, dateOfBirth: new Date("September 20,1992") },
+            ];
+            $scope.employees = employees;
+        };
+        //Register the controller in the module
+        myapp.controller("employeesController", employeesController);
+    </script>
+</head>
+<body ng-app="myModule">
+    
+    <h2>AngularJS ng init directive</h2>
+    <div style="margin-top:5px"/>
+    <div ng-init="employees = [
+                               { firstname: 'Manas', lastname: 'Panda', gender: 'Male', company: 'Tieto'},
+                               { firstname: 'Kiran', lastname: 'Sadangi', gender: 'Male', company: 'Tieto' },
+                               { firstname: 'Lala', lastname: 'Bishoyi', gender: 'Male', company: 'Infosys' },
+                               { firstname: 'Manoj', lastname: 'Patro', gender: 'Male', company: 'Tieto' },
+                               { firstname: 'Jyoti', lastname: 'Pathy', gender: 'Female', company: 'Infosys' },
+                               { firstname: 'Alia', lastname: 'Mohanty', gender: 'Female', company: 'SDL'},
+                               { firstname: 'Sonali', lastname: 'Sahu', gender: 'Female', company: 'SDL' },
+                                    ]"> 
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>
+                        First Name
+                    </td>
+                    
+                    <td>
+                        Gender
+                    </td>
+                    <td>
+                        Company
+                    </td> 
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees">
+                    <td>
+                        {{employee.firstname}} 
+                    </td>
+                    
+                    <td>
+                        {{employee.gender}}
+                    </td>
+                    <td>
+                        {{employee.company}}                                   
+                </tr>
+            </tbody>
+        </table>        
+    </div>
+    <div style="margin-top:5px" />
+    
+</body>
+
+</html>

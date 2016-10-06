@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html ng-app="myModule">
+<head>
+    <title>Home</title>
+    <!--<script src="Script/angular.min.js"></script>-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/Script.js"></script>
+</head>
+<body>    
+    
+    <h2>AngularJS sort rows by table header</h2>
+    <div style="margin-top:5px" />
+    <div ng-controller="employeesController">        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th ng-click="sortData('firstname')">
+                        Name <div ng-class="getSortClass('firstname')"></div>
+                    </th>
+                    <th ng-click="sortData('gender')">
+                        Gender <div ng-class="getSortClass('gender')"></div>
+                    </th>
+                    <th ng-click="sortData('dateOfBirth')">
+                        Date of Birth<div ng-class="getSortClass('dateOfBirth')"></div>
+                    </th>
+                    <th ng-click="sortData('company')">
+                        Company<div ng-class="getSortClass('company')"></div>
+                    </th>
+                    <th ng-click="sortData('salary')">
+                        Salary<div ng-class="getSortClass('salary')"></div>
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employee in employees | orderBy:sortColumn:reversesort"> <!--Example limitTo:<Number of rows to limit>:<Index number from which to start by default 0>>-->
+                    <td>
+                        {{employee.firstname | uppercase}} {{employee.lastname | uppercase}}
+                    </td>
+
+                    <td>
+                        {{employee.gender | lowercase }}
+                    </td>
+                    <td>
+                        {{employee.dateOfBirth | date:"dd/MM/yyyy"}}
+                    </td>
+                    <td>
+                        {{employee.company}}
+                    </td>
+                    <td>
+                        {{employee.salary | number:2 }}
+                    </td>                   
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-top:5px" />
+
+</body>
+</html>

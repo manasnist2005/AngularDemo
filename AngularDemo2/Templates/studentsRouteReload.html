@@ -1,0 +1,11 @@
+﻿<h1>List of Students</h1>
+<h3>View load Time:: </h3>{{studentCtrl.currentTime}}</p>
+<ul>
+    <li ng-repeat="student in studentCtrl.students">
+        <a href="students/{{student.id}}">
+            {{student.name}}
+        </a>
+    </li>
+</ul>
+
+<button ng-click="studentCtrl.reloadData()">Reload</button>

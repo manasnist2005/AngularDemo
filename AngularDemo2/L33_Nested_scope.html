@@ -1,0 +1,63 @@
+﻿ <!DOCTYPE html>
+<html ng-app="Demo">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <base href="/" />
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script>
+
+        /// <reference path="angular.min.js" />
+        /// <reference path="angular-route.min.js" />
+
+        var app = angular
+            .module("Demo", [])
+            .controller("countryController1", function ($scope) {
+                $scope.name = "India";
+            })
+            .controller("stateController1", function ($scope) {
+                $scope.name = "Maharashtra";
+            })
+            .controller("cityController1", function ($scope) {
+                $scope.name = "Mumbai";
+            })
+            .controller("countryController2", function () {
+            this.name = "India";
+            })
+            .controller("stateController2", function () {
+                this.name = "Maharashtra";
+            })
+            .controller("cityController2", function () {
+                this.name = "Mumbai";
+            });
+
+    </script>
+   
+    
+</head>
+<body>
+    <h2>Angular nested scopes and controller as syntax</h2>
+    <br />  
+    <div ng-controller="countryController1">
+        {{name}}
+        <div ng-controller="stateController1">
+            {{$parent.name}} - {{name}}
+            <div ng-controller="cityController1">
+                {{$parent.$parent.name}} - {{$parent.name}} - {{name}}
+            </div>
+        </div>
+    </div>
+     <h2>OR by using as Syntax</h2>
+
+    <div ng-controller="countryController2 as countryCtrl">
+        {{countryCtrl.name}}
+        <div ng-controller="stateController2 as stateCtrl">
+            {{countryCtrl.name}} - {{stateCtrl.name}}
+            <div ng-controller="cityController2 as cityCtrl">
+                {{countryCtrl.name}} - {{stateCtrl.name}} - {{cityCtrl.name}}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

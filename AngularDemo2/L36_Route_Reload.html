@@ -1,0 +1,112 @@
+﻿ <!DOCTYPE html>
+<html ng-app="Demo">
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <base href="/" />
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script>
+        function DateLoad() {
+            var date = Date();
+            document.getElementById("currentTime").innerHTML = date;
+
+        }
+    </script>
+    <!--<script> document.getElementById("demo").innerHTML = Date()</script>-->
+    <script>       
+        /// <reference path="angular.min.js" />
+        /// <reference path="angular-route.min.js" />
+        var app = angular
+                    .module("Demo", ["ngRoute"])
+                    .config(function ($routeProvider, $locationProvider) {                       
+                        $routeProvider                            
+                            .when("/home", {
+                                templateUrl: "Templates/home.html",
+                                controller: "homeController"  
+                            })                           
+                            .when("/students", {
+                                templateUrl: "Templates/studentsRouteReload.html",
+                                controller: "studentsController",
+                                controllerAs: "studentCtrl"
+                            })
+                        $locationProvider.html5Mode(true);
+                    })
+                    .controller("homeController", function () {
+                        this.message = "Home Page";
+                    })                    
+                     .controller("studentsController", function ($http, $route) {
+                         this.currentTime = Date();
+                         var vm = this;
+                         vm.reloadData = function(){
+                             $route.reload();
+                         }
+                         $http.get("WebServices/StudentService.asmx/GetAllStudents")
+                                                .then(function (response) {
+                                                    vm.students = response.data;
+                                                })
+                     })
+       
+                    
+
+    </script>  
+    <style>
+        .header {
+    width: 800px;
+    height: 80px;
+    text-align: center;
+    background-color: #BDBDBD;
+}
+
+.footer {
+    background-color: #BDBDBD;
+    text-align: center;
+}
+
+.leftMenu {
+    height: 500px;
+    background-color: #D8D8D8;
+    width: 150px;
+}
+
+.mainContent {
+    height: 500px;
+    background-color: #E6E6E6;
+    width: 650px;
+}
+
+a{
+    display:block;
+    padding:5px
+}
+    </style>
+</head>
+<body onload="DateLoad()">
+    <table style="font-family: Arial">
+        <tr>
+            <td colspan="2" class="header">
+                <h1>
+                    WebSite Header
+                </h1>
+               
+            </td>
+        </tr>
+        <tr>
+            <td class="leftMenu">
+                <a href="home">Home</a>               
+                <a href="students">Students</a>               
+            </td>
+            <td class="mainContent">
+                <h2>AngularJS route reload </h2>
+                <h3>Page Load Time :: </h3><p id="currentTime"></p>
+                <ng-view></ng-view>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="footer">
+                <b>Website Footer</b>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
